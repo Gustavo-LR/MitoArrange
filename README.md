@@ -88,37 +88,6 @@ python mitoarrange.py \
 
 If `-o` is omitted, the output folder is `mitoarrange_results/`.
 
-## Input requirements
-
-Each input file must contain **one GenBank sequence record** with a nucleotide sequence and usable `gene` features carrying a `/gene` qualifier. Only these `gene` features are used to derive gene order; MitoArrange does not reconstruct gene identities from `CDS`, `tRNA`, `rRNA`, or `/locus_tag` features alone.
-
-Example directory arrangement:
-
-```text
-genomes/
-├── Bacuri_Acu.gbf
-├── Bacuri_Abaete.gbf
-├── Bacuri_Alianca1.gbf
-└── Bacuri_WILD.gbf
-```
-
-Folders may also organize sample sets:
-
-```text
-genomes/
-├── Population_A/
-│   ├── Sample_01.gbf
-│   └── Sample_02.gbf
-└── Population_B/
-    ├── Sample_03.gbf
-    └── Sample_04.gbf
-```
-
-Provide at least **two genomes**, with at least **three retained genes per genome** and at least three genes shared in every pairwise comparison. Filenames must have unique stems (for example, two separate files named `sample1.gbf` and `sample1.gb` cannot both be included).
-
-MitoArrange is designed for **circular mitochondrial annotations**. Gene orders are analyzed as cycles even if an input file does not declare circular topology; therefore, ensure the supplied topology and biological assumptions are appropriate. A joined gene crossing the origin is specially recognized only when the GenBank record declares a circular topology.
-
-Consistent gene naming and homologous annotations are essential: gene matching is case-insensitive but otherwise name-based, not sequence-based.
 
 ## How the analysis works
 
@@ -164,7 +133,7 @@ Use `--group-by` to choose how visualization groups are defined:
 | Mode | Meaning |
 |---|---|
 | `auto` (default) | Use source folders when at least two distinct source-folder groups occur; otherwise use exact gene-arrangement groups. |
-| `folder` | Group by the input file's immediate parent folder grouping. |
+| `folder` | Group by the input file's immediate parent folder grouping. Use this if you decide to manually sort the groups, create a folder for each group and put your annotations files in those folders. |
 | `structure` | Group samples with identical complete signed circular adjacency signatures (`S01`, `S02`, ...). |
 | `similarity` | Group by pairwise breakpoint distance using deterministic **complete-linkage** agglomerative clustering (`C01`, `C02`, ...). |
 
@@ -192,7 +161,6 @@ With complete linkage, all pairwise distances within a completed group must be n
 - `medoid`: sample with the smallest summed within-group breakpoint distance (alphabetical tie-breaker).
 - `alphabetical`: alphabetically first sample.
 
-No artificial consensus genome is built.
 
 `--display_order similarity` (default) arranges groups and sample rows heuristically to put similar gene orders near each other. `--display_order alphabetical` switches to alphabetic ordering. **Row ordering is not phylogenetic inference** and does not change group membership.
 
@@ -201,7 +169,7 @@ No artificial consensus genome is built.
 MitoArrange generates two SVG styles:
 
 - **Full gene-arrow view:** an arrow per gene, labeled with its name; arrow direction represents relative strand orientation.
-- **Compact view:** consecutive same-strand genes are combined into directional blocks; the internal colored/hatched bars distinguish individual genes.
+- **Compact view:** consecutive same-strand genes are combined into directional blocks; the internal colored/hatched bars distinguish individual genes. The compact view is intended to be included in the article main text.
 
 Both views use a shared input-wide gene identity palette, beginning with 12 contrasting colors and adding textures for further genes. SVGs are editable in vector graphics software. Arrow size represents the schematic gene arrangement, **not nucleotide length**.
 
