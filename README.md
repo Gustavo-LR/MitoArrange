@@ -2,10 +2,6 @@
 
 **Comparative analysis and visualization of mitochondrial gene organization from annotated genomes**
 
-**Version:** 1.0  
-**Language:** Python 3.10+  
-**Dependency:** [Biopython](https://biopython.org/)
-
 MitoArrange compares **gene content, circular gene order, and gene orientation** across mitochondrial genomes using GenBank annotations. It identifies conserved gene adjacencies, differences in gene arrangements, conserved blocks, and gene-order patterns compatible with a single inversion. It also groups genomes by identical arrangements or by an adjustable similarity threshold and generates publication-oriented SVG diagrams.
 
 **MitoArrange is an annotation-based gene-arrangement comparison tool, not a nucleotide-level synteny aligner or a read-supported structural-variant caller.** It does not reconstruct physical mitochondrial DNA molecules.
