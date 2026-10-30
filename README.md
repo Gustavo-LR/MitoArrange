@@ -268,8 +268,6 @@ MitoArrange compares **annotated arrangements of homologously named genes**, not
 - Comparisons depend on annotation correctness and consistent gene naming; MitoArrange is not an orthology inference tool.
 - The diagrams show linearized representations of circular gene orders, **not physically validated mitochondrial conformations**.
 
-## Version history
+## Citation
 
-### v1.0
-
-Initial public release: annotation-based mitochondrial gene order and adjacency comparison, strict and frequency-based gene filtering, putative inversion detection, similarity grouping, and standard/compact SVG visualizations.
+The paper that first applies this tool in under development.
